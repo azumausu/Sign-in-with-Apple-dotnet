@@ -117,8 +117,9 @@ public class AppleAuthenticationService
             claims: new[] {new Claim("sub", _appleClientId), },
             issuer: _appleTeamId,
             audience: "https://appleid.apple.com",
-            // 6か月未満で指定する
-            expires: DateTime.UtcNow + TimeSpan.FromDays(150),
+            // Refresh Tokenに期限は存在しないが特定の条件で向こうになる場合がある。
+            // https://developer.apple.com/forums/thread/651237
+            expires: DateTime.UtcNow + TimeSpan.FromDays(1),
             signingCredentials: credentials);
         
         return new JwtSecurityTokenHandler().WriteToken(token);
