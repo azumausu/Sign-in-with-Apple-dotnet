@@ -70,7 +70,7 @@ public class AppleAuthenticationService
         var output = JsonSerializer.Deserialize<GenerateAndValidateTokensOutput>(body) ?? throw new InvalidOperationException();
 
         // Debug
-        Console.WriteLine(body);
+        // Console.WriteLine(body);
         
         return output;
     }
@@ -103,8 +103,8 @@ public class AppleAuthenticationService
         }
         
         // Debug
-        var body = await response.Content.ReadAsStringAsync() ?? throw new InvalidOperationException();
-        Console.WriteLine(body);
+        // var body = await response.Content.ReadAsStringAsync() ?? throw new InvalidOperationException();
+        // Console.WriteLine(body);
     }
     
     
