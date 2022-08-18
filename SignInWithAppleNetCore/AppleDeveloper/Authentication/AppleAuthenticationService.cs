@@ -102,7 +102,7 @@ public class AppleAuthenticationService
             throw new HttpRequestException($"StatusCode: {response.StatusCode}\nReason: {errorMessage}");
         }
         
-        // production意外ならログを出力する
+        // Debug
         var body = await response.Content.ReadAsStringAsync() ?? throw new InvalidOperationException();
         Console.WriteLine(body);
     }
