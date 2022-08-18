@@ -39,7 +39,7 @@ public class AppleAuthenticationService
     }
     
     /// <summary>
-    /// Appleのリフレッシュトークンを作成するApiを実行する
+    /// リフレッシュトークンを作成する
     /// https://developer.apple.com/documentation/sign_in_with_apple/generate_and_validate_tokens
     /// </summary>
     public async ValueTask<GenerateAndValidateTokensOutput> GenerateAndValidateTokens(GenerateAndValidateTokensInput input)
@@ -117,7 +117,7 @@ public class AppleAuthenticationService
             claims: new[] {new Claim("sub", _appleClientId), },
             issuer: _appleTeamId,
             audience: "https://appleid.apple.com",
-            // Refresh Tokenに期限は存在しないが特定の条件で向こうになる場合がある。
+            // Refresh Tokenに期限は存在しない。ただし、ユーザーの特定操作で無効になる場合がある。
             // https://developer.apple.com/forums/thread/651237
             expires: DateTime.UtcNow + TimeSpan.FromDays(1),
             signingCredentials: credentials);
